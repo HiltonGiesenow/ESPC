@@ -10,3 +10,5 @@ Start-Process "C:\Download\Checklist.xlsx"
 Start-Process "https://technet.microsoft.com/en-us/library/ff686816(v=office.16).aspx"
 
 Start-Process "http://powershellgallery.com/packages/PoShMon"
+
+Start-Process "C:\Download\PoShMon Report Sample.docx"
