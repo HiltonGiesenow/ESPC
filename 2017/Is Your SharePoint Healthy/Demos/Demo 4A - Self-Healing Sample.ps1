@@ -9,11 +9,11 @@ if ($bitsService.Status -ne "Running")
     $bitsService = Get-Service BITS
 
     if ($bitsService.Status -ne "Running")
-        { Write-Error "Could not start BITS service, operator assistance required (SEND NOTIFICATION NOW...)" }
+        { Write-Error "Could not start BITS service, operator assistance required (Send Email etc...)" }
     else
-        { Write-Host "`tBITS service restarted successfully (SEND NOTIFICATION NOW...)" -ForegroundColor Green }
+        { Write-Host "`tBITS service restarted successfully (Send Email etc...)" -ForegroundColor Green }
 } else {
-    Write-Host "BITS service running fine (SEND NOTIFICATION NOW...)" -ForegroundColor Green
+    Write-Host "BITS service running fine (Send Email etc...)" -ForegroundColor Green
 }
 
 # Stop-Service BITS

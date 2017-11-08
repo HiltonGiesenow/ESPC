@@ -27,11 +27,12 @@ $pushbulletConfig = Get-Content -Raw -Path ([Environment]::GetFolderPath("MyDocu
 
 $poShMonConfiguration = New-PoShMonConfiguration {
                             General `
+                                -ServerNames 'HGXPS' `
                                 -MinutesToScanHistory 1440
                             OperatingSystem `
                                 -EventLogCodes 'Error', 'Warning' `
                                 -WindowsServices 'BITS'
-                            Notifications -When All {
+                            Notifications -When None {
                                 <#
                                     Email `
                                     -ToAddress "SharePointTeam@Company.com" `
@@ -44,7 +45,9 @@ $poShMonConfiguration = New-PoShMonConfiguration {
                             }
 }
 
-Invoke-OSMonitoring -PoShMonConfiguration $poShMonConfiguration -Verbose
+$testOutput = Invoke-OSMonitoring -PoShMonConfiguration $poShMonConfiguration -Verbose
+
+$testOutput[3] | ConvertTo-Json -Depth 6
 
 Start-Service BITS
 

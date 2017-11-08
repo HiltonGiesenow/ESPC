@@ -1,8 +1,9 @@
-﻿Function Test-DriveSpace
+﻿
+Function Test-DriveSpace
 {
     [CmdletBinding()]
     param (
-        $warningPercent = 30
+        $WarningPercent = 10
     )
 
     $driveSpaceOutput = @()
@@ -18,7 +19,7 @@
 
         Write-Verbose ("`t`t" + $drive.DeviceID + " : " + $totalSpace.ToString(".00") + " : " + $freeSpace.ToString(".00") + " (" + $freeSpacePercent.ToString("00") + "%)")
 
-        if ($freeSpacePercent -lt $warningPercent)
+        if ($freeSpacePercent -lt $WarningPercent)
         {
             Write-Warning "`t`tFree drive Space ($("{0:N0}" -f $freeSpacePercent)%) is below variance threshold ($warningPercent%)"
             $highlight = $true
@@ -50,5 +51,6 @@ Function Send-MonitoringEmail
 }
 
 $driveSpaceOutput = Test-DriveSpace -Verbose
+$driveSpaceOutput = Test-DriveSpace -WarningPercent 30 -Verbose
 
 Send-MonitoringEmail $driveSpaceOutput

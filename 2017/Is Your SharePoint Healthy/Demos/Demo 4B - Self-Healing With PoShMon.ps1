@@ -3,10 +3,7 @@
 Stop-Service BITS
 
 $poShMonConfiguration = New-PoShMonConfiguration {
-    General `
-        -MinutesToScanHistory 1440
     OperatingSystem `
-        -EventLogCodes 'Error', 'Warning' `
         -WindowsServices 'BITS'
 }
 
@@ -14,9 +11,9 @@ $monitoringOutput = Invoke-OSMonitoring -PoShMonConfiguration $poShMonConfigurat
 
 $monitoringOutput
 
-$monitoringOutput[4]
+$monitoringOutput[5]
 
-$monitoringOutput[4].OutputValues
+$monitoringOutput[5].OutputValues
 
 $repairScripts = @(
     'C:\Development\GitHub\PoShMon\PoShMon\src\Functions\PoShMon.SelfHealing.Core\Sample-Repair-WindowsServiceState.ps1'
