@@ -1,10 +1,20 @@
-﻿$bitsService = Get-Service BITS
+﻿Get-Service BITS
+
+Stop-Service BITS
+
+$bitsService = Get-Service BITS
+
+if ($bitsService.Status -ne "Running")
+{
+    Write-Error "BITS Service is not running, email operator etc..."    
+}
 
 if ($bitsService.Status -ne "Running")
 {
     Write-Warning "BITS Service is not running, attempting restart..."
     
     $bitsService | Start-Service #-WhatIf
+    $bitsService | Set-Service -StartupType Automatic #Presumably if it's meant to be running, it should be set to auto start...
 
     $bitsService = Get-Service BITS
 
@@ -15,5 +25,3 @@ if ($bitsService.Status -ne "Running")
 } else {
     Write-Host "BITS service running fine (Send Email etc...)" -ForegroundColor Green
 }
-
-# Stop-Service BITS

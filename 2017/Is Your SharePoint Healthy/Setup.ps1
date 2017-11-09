@@ -9,6 +9,16 @@ Start-Process "C:\Download\Checklist.xlsx"
 
 Start-Process "https://technet.microsoft.com/en-us/library/ff686816(v=office.16).aspx"
 
+Start-Process "https://www.powershellgallery.com/packages/OVF.SharePoint/"
+
 Start-Process "http://powershellgallery.com/packages/PoShMon"
 
 Start-Process "C:\Download\PoShMon Report Sample.docx"
+
+
+#Import-Module "C:\Development\GitHub\PoShMon\PoShMon\src\PoShMon.psd1" -Force #This is only necessary if you haven't installed the module into your Modules folder, e.g. via PowerShellGallery / Install-Module
+Import-Module PoShMon
+
+Write-Warning "`nDon't forget to Run As Admin!"
+Write-Warning "`nDon't forget to Run As Admin!"
+Write-Warning "`nDon't forget to Run As Admin!"

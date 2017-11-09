@@ -36,6 +36,13 @@ Function Test-DriveSpace
     return $driveSpaceOutput
 }
 
+#Function Test-Memory
+#Function Test-CPU
+#Function Test-Network
+
+#Function Test-SharePointServerUpgradeStatus
+#Function Test-SharePointCacheServerStatus
+
 Function Send-MonitoringEmail
 {
     [CmdletBinding()]
@@ -50,7 +57,6 @@ Function Send-MonitoringEmail
     #>
 }
 
-$driveSpaceOutput = Test-DriveSpace -Verbose
 $driveSpaceOutput = Test-DriveSpace -WarningPercent 30 -Verbose
 
 Send-MonitoringEmail $driveSpaceOutput
