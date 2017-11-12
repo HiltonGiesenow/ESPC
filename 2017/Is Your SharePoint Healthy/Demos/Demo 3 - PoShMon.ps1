@@ -1,10 +1,11 @@
+Import-Module PoShMon
 
 # Demo 1 - simple PoShMon
 Invoke-OSMonitoring -Verbose
 
 # Demo 2 - With some settings
 $poShMonConfiguration = New-PoShMonConfiguration { OperatingSystem -DriveSpaceThresholdPercent 30 }
-Invoke-OSMonitoring -PoShMonConfiguration $poShMonConfiguration -Verbose
+Invoke-OSMonitoring -Verbose -PoShMonConfiguration $poShMonConfiguration 
 
 # Demo 3 - See what tests are available
 Get-OSTests
@@ -29,7 +30,7 @@ $poShMonConfiguration = New-PoShMonConfiguration {
                             OperatingSystem `
                                 -EventLogCodes 'Error', 'Warning' `
                                 -WindowsServices 'BITS'
-                            Notifications -When None {
+                            Notifications -When All {
                                 <#
                                     Email `
                                     -ToAddress "SharePointTeam@Company.com" `
@@ -44,10 +45,38 @@ $poShMonConfiguration = New-PoShMonConfiguration {
 
 $testOutput = Invoke-OSMonitoring -PoShMonConfiguration $poShMonConfiguration -Verbose
 
-$testOutput[3] | ConvertTo-Json -Depth 6
-
 Start-Service BITS
 
-# Demo 5 - See what tests are available for SharePoint
+# Demo 5 - See what tests are available for SharePoint and Office Online Server (nee OWA)
 
 Get-SPTests
+Get-OOSTests
+
+# Demo 6 - Sample from the docs for a full SharePoint farm scan
+
+$poShMonConfiguration = New-PoShMonConfiguration {
+    General `
+        -EnvironmentName 'SharePoint' `
+        -MinutesToScanHistory 1440 `
+        -PrimaryServerName 'SPAPPSVR01' `
+        -ConfigurationName SpFarmPosh `
+        -TestsToSkip ""
+    OperatingSystem `
+        -EventLogCodes "Error","Warning"
+    WebSite `
+        -WebsiteDetails @{ 
+                            "http://intranet" = "Read our terms"
+                            "http://extranet.company.com" = "Read our terms"
+                         }
+    Notifications -When OnlyOnFailure {
+        Email `
+            -ToAddress "SharePointTeam@Company.com" `
+            -FromAddress "Monitoring@company.com" `
+            -SmtpServer "EXCHANGE.COMPANY.COM" `
+    }
+    
+}
+
+
+
+ # | ConvertTo-Json -Depth 3

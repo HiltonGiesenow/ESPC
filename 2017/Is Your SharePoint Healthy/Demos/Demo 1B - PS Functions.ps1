@@ -50,13 +50,10 @@ Function Send-MonitoringEmail
         [pscustomobject]$driveSpaceOutput
     )
 
-    <#
-    ...
-    Send-MailMessage
-    ...
-    #>
+    Write-Host 'Creating an html email...' -ForegroundColor Cyan
+    Write-Host 'Using Send-MailMessage to send the email...' -ForegroundColor Cyan
 }
 
-$driveSpaceOutput = Test-DriveSpace -WarningPercent 30 -Verbose
+$driveSpaceOutput = Test-DriveSpace -Verbose -WarningPercent 30
 
 Send-MonitoringEmail $driveSpaceOutput

@@ -22,3 +22,6 @@ Import-Module PoShMon
 Write-Warning "`nDon't forget to Run As Admin!"
 Write-Warning "`nDon't forget to Run As Admin!"
 Write-Warning "`nDon't forget to Run As Admin!"
+Write-Warning "`nDon't forget to plug in flashdrive!"
+Write-Warning "`nDon't forget to plug in flashdrive!"
+Write-Warning "`nDon't forget to plug in flashdrive!"
