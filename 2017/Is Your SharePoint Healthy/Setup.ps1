@@ -18,10 +18,3 @@ Start-Process "C:\Download\PoShMon Report Sample.docx"
 
 #Import-Module "C:\Development\GitHub\PoShMon\PoShMon\src\PoShMon.psd1" -Force #This is only necessary if you haven't installed the module into your Modules folder, e.g. via PowerShellGallery / Install-Module
 Import-Module PoShMon
-
-Write-Warning "`nDon't forget to Run As Admin!"
-Write-Warning "`nDon't forget to Run As Admin!"
-Write-Warning "`nDon't forget to Run As Admin!"
-Write-Warning "`nDon't forget to plug in flashdrive!"
-Write-Warning "`nDon't forget to plug in flashdrive!"
-Write-Warning "`nDon't forget to plug in flashdrive!"
